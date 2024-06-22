@@ -1,7 +1,7 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import { useState } from "react";
+// import { useState, useEffect } from "react";
 import "./App.css";
 import Feedback from "./components/Feedback/Feedback";
 import Notification from "./components/Notification/Notification";
@@ -15,12 +15,19 @@ function App() {
     bad: 0,
   });
 
+  const updateFeedback = (feedbackType) => {
+    setFeedback((prevFeedback) => ({
+      ...prevFeedback,
+      [feedbackType]: prevFeedback[feedbackType] + 1,
+    }));
+  };
+
   return (
     <>
       <Description />
-      <Feedback />
-      <Notification />
-      <Options />
+      <Feedback feedback={feedback} />
+      <Options updateFeedback={updateFeedback} />
+      <Notification message="No feedback given yet" />
     </>
   );
 }
