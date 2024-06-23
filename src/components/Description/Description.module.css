@@ -1,0 +1,22 @@
+.descroption {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: 400;
+  padding: 20px;
+  color: black;
+  background-color: lightblue;
+  border: 1px solid grey;
+  border-radius: 8px;
+}
+
+.parahraph {
+  font-size: 30px;
+  font-weight: 300;
+  color: black;
+}

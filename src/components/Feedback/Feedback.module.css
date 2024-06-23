@@ -1,0 +1,15 @@
+.feedbackscontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+  max-width: 800px;
+}
+
+.feedback {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  font-size: 30px;
+  font-weight: 200;
+}
