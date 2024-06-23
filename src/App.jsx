@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -14,21 +14,30 @@ function App() {
     bad: 0,
   };
 
-  const [feedback, setFeedback] = useState(initFeedback);
+  const [feedback, setFeedback] = useState(() => {
+    const savedFeedback = localStorage.getItem("feedback");
+    return savedFeedback ? JSON.parse(savedFeedback) : initFeedback;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("feedback", JSON.stringify(feedback));
+  }, [feedback]);
 
   const resetFeedback = () => {
-    setFeedback({
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    });
+    const resetState = { good: 0, neutral: 0, bad: 0 };
+    setFeedback(resetState);
+    localStorage.setItem("feedback", JSON.stringify(resetState));
   };
 
   const updateFeedback = (feedbackType) => {
-    setFeedback((prevFeedback) => ({
-      ...prevFeedback,
-      [feedbackType]: prevFeedback[feedbackType] + 1,
-    }));
+    setFeedback((prevFeedback) => {
+      const updatedFeedback = {
+        ...prevFeedback,
+        [feedbackType]: prevFeedback[feedbackType] + 1,
+      };
+      localStorage.setItem("feedback", JSON.stringify(updatedFeedback));
+      return updatedFeedback;
+    });
   };
 
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
