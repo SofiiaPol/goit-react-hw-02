@@ -1,13 +1,13 @@
 import styles from "./Feedback.module.css";
 
-function Feedback({ feedback }) {
+function Feedback({ feedback, total, positiveFeedback }) {
   return (
     <div>
       <p>Good: {`${feedback.good}`}</p>
       <p>Neutral: {`${feedback.neutral}`}</p>
       <p>Bad: {`${feedback.bad}`}</p>
-      <p>Total Feedback:</p>
-      <p>Positive Feedback:</p>
+      <p>Total Feedback: {`${total}`}</p>
+      <p>Positive Feedback: {`${positiveFeedback}%`}</p>
     </div>
   );
 }
